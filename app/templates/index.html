@@ -5,7 +5,20 @@
 {% block content %} 
 
 <div class="container">
-    <h2>Home Page </h2>
+    <h1>Flask Blog  Starter </h1>
+    <div class="contents">
+        <p>Start Editing the  index.html file to see changes.</p>
+        <ul class="grid">
+            {% for post in posts %}
+            <li class="box">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p class="author">By: {{ post.author.username }}</p>
+                <p class="timestamp">{{ post.timestamp.strftime("%B %d, %Y") }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% endblock %}

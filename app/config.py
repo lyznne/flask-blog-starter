@@ -1,12 +1,13 @@
 import os
 
+
 # Base directory of the application
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-
 class Config:
-    # Secret key for generating tokens and protecting against cross-site request forgery
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'your-secret-key'
+
+    # Secret key for protecting against cross-site request forgery
+    SECRET_KEY = os.environ.get('SECRET_KEY_TOKEN') or 'your-secret-key'
 
     # SQLAlchemy database configuration
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \

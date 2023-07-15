@@ -1,8 +1,8 @@
 Flask Blog Starter
-This is a simple Flask blog starter template. It provides a basic structure and starting point for building a blog application using Flask, SQLAlchemy, and Bootstrap.
+This is a simple Flask blog starter template. It provides a basic structure and starting point for building a blog application using Flask, SQLAlchemy.
 
 Features
-Simple Sqlite database.
+Simple Sqlite database setup.
 Structured for big Flask Apps.
 
 
@@ -18,9 +18,21 @@ Create a virtual environment(optional):
 python3 -m venv venv
 Activate the virtual environment:
 
+#Linux / mac
+    #Bash shell
+    source env/bin/activate
+
+    #Fish shell
+    source env/bin/activate.fish 
+
+    #csh / tsch
+    source env/bin/activate.csh
+
+#windows
+    #Bash shell
+    source env\bin\activate
 
 
-source venv/bin/activate
 Install the required packages:
 e
 pip install -r requirements.txt

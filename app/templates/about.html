@@ -1,11 +1,33 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block title %} About - Page {% endblock %} 
+{% block title %} About - Page {% endblock %}
 
-{% block content %} 
+{% block content %}
+
+
 
 <div class="container">
-    <h2>About Page </h2>
+    <h2>About <span>Flask Blog Starter </span> </h2>
+    <p>
+        Hi there, I'am <span>Enos Lyznne ,</span>
+        This is flask blog Starter is for providing basics for larger web applications and websites,
+        it's a simple application that allows you to create your own blogs with the help of Flask framework.
+        It uses SQLite as database engine so no need any extra configuration or installation required
+    </p>
+    <p>
+        Contributions are open !! for development of <span>Script ,</span>
+        Please feel free to contribute by creating issues on GitHub!
+    </p>
+    <div class="contents flex">
+        {% for user in users %}
+        <div class="box">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+            <p> {{ user.bio }}</p>
+            <p> {{ user.posts.timestamp }} </p>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
