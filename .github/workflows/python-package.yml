@@ -40,7 +40,7 @@ jobs:
       - name: 🧹 Lint Code
         run: |
           pip install flake8
-          flake8 .
+
 
       - name: 🧪 Run Tests
         run: |

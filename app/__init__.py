@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from app.config import config
 import random
@@ -31,7 +30,6 @@ def gen_token():
 
     file_path = "app/config.py"
 
-
     with open(file_path, "r") as file:
         content = file.read()
 
@@ -40,10 +38,12 @@ def gen_token():
     with open(file_path, "w") as file:
         file.write(content)
 
+
 def create_app(config_name):
     gen_token()
     app.config.from_object(config[config_name])
     from app.models import db
+
     # Initialize Flask extensions
     db.init_app(app)
     migrate.init_app(app, db)

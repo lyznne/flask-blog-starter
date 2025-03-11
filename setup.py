@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "flask-template=initkit.cli:cli",  
+            "flask-template=initkit.cli:cli",
         ],
     },
     include_package_data=True,
