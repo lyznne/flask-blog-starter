@@ -1,0 +1,62 @@
+# Python-specific
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+virtualenv/
+
+# Flask-specific
+instance/  # For Flask instance folder (e.g., SQLite DB, config)
+*.sqlite
+*.db
+
+# Logs and temporary files
+*.log
+*.log.*
+*.pid
+*.tmp
+temp/
+
+# OS-specific
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Editor/IDE files
+*.swp
+*.swo
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sensitive data
+*.env
+.env.local
+config.secret.py
+secrets.json
+
+# Dependency management
+pip-log.txt
+Pipfile.lock
+
+# Testing/Coverage
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+*.cover
+
+# Miscellaneous
+*.bak
+*.backup
+*.cache
+node_modules/  # If you add frontend tools
