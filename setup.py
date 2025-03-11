@@ -10,8 +10,8 @@ setup(
     version="0.1.0",
     packages=find_packages(include=["initkit", "initkit.*"]),
     install_requires=[
-        "Flask>=2.0.0",
-        "click>=8.0.0",
+        "Flask>=2.3.2",
+        "click>=8.1.3",
         "python-dotenv>=0.19.0",
     ],
     entry_points={
@@ -35,7 +35,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
