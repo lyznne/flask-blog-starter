@@ -7,7 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
 
     # Secret key for protecting against cross-site request forgery
-    SECRET_KEY = os.environ.get('SECRET_KEY_TOKEN') or 'your-secret-key'
+    SECRET_KEY = os.environ.get('5574929db5540d58bed8adaef4f225de') or 'your-secret-key'
 
     # SQLAlchemy database configuration
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
