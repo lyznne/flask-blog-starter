@@ -1,4 +1,4 @@
-name: 🚀 Publish to PyPI 
+name: 🚀 Publish to PyPI
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
     branches: [ "master" ]
   release:
     types: [created]  # Runs when a new release is created
-
   workflow_dispatch:  # Allows manual trigger
     inputs:
       publish:
@@ -17,6 +16,7 @@ on:
 
 jobs:
   build-and-publish:
+    if: github.event_name != 'pull_request'  # Skip for pull requests
     runs-on: ubuntu-latest
 
     steps:
@@ -33,6 +33,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install build twine
 
+      - name: 📦 Install Project Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: 🧹 Lint Code
+        run: |
+          pip install flake8
+          flake8 .
+
+      - name: 🧪 Run Tests
+        run: |
+          pip install pytest
+          pytest
+
       - name: 🏗️ Build Package
         run: |
           python -m build
@@ -40,33 +54,10 @@ jobs:
       - name: 🧪 Test Package (Optional)
         run: |
           pip install dist/*.whl
-          python -c "import your_package_name; print('Package imported successfully!')"
+          python -c "import initkit; print('Package imported successfully!')"
 
       - name: 🔐 Publish to PyPI
-        if: github.event_name != 'pull_request'
         env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         run: |
           twine upload dist/* -u __token__ -p $PYPI_API_TOKEN
-
-  # docker-publish:
-  #   needs: build-and-publish
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'release'
-
-  #   steps:
-  #     - name: 📥 Checkout Repository
-  #       uses: actions/checkout@v3
-
-  #     - name: 🐳 Log in to Docker Hub
-  #       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-
-  #     - name: 🏗️ Build Docker Image
-  #       run: |
-  #         docker build -t yourdockerhubusername/flask-template-cli:latest .
-  #         docker tag yourdockerhubusername/flask-template-cli:latest yourdockerhubusername/flask-template-cli:${{ github.event.release.tag_name }}
-
-  #     - name: 📤 Push Docker Image
-  #       run: |
-  #         docker push yourdockerhubusername/flask-template-cli:latest
-  #         docker push yourdockerhubusername/flask-template-cli:${{ github.event.release.tag_name }}
