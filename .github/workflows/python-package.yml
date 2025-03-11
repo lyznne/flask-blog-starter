@@ -1,13 +1,12 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python package
+name: 🚀 Publish to PyPI 
 
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  release:
+    types: [created]  # Runs when a new release is created
 
   workflow_dispatch:  # Allows manual trigger
     inputs:
@@ -38,8 +37,36 @@ jobs:
         run: |
           python -m build
 
+      - name: 🧪 Test Package (Optional)
+        run: |
+          pip install dist/*.whl
+          python -c "import your_package_name; print('Package imported successfully!')"
+
       - name: 🔐 Publish to PyPI
+        if: github.event_name != 'pull_request'
         env:
           PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         run: |
           twine upload dist/* -u __token__ -p $PYPI_API_TOKEN
+
+  # docker-publish:
+  #   needs: build-and-publish
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'release'
+
+  #   steps:
+  #     - name: 📥 Checkout Repository
+  #       uses: actions/checkout@v3
+
+  #     - name: 🐳 Log in to Docker Hub
+  #       run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+  #     - name: 🏗️ Build Docker Image
+  #       run: |
+  #         docker build -t yourdockerhubusername/flask-template-cli:latest .
+  #         docker tag yourdockerhubusername/flask-template-cli:latest yourdockerhubusername/flask-template-cli:${{ github.event.release.tag_name }}
+
+  #     - name: 📤 Push Docker Image
+  #       run: |
+  #         docker push yourdockerhubusername/flask-template-cli:latest
+  #         docker push yourdockerhubusername/flask-template-cli:${{ github.event.release.tag_name }}
