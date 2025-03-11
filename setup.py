@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="initkit",
-    version="0.1.0",
+    version="0.2.0",
     packages=find_packages(include=["initkit", "initkit.*"]),
     install_requires=[
         "Flask>=2.3.2",
